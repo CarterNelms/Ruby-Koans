@@ -15,6 +15,20 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
+
+  sides = [a, b, c]
+  longest_side = sides.max
+  sides_sans_longest = [].concat(sides)
+  sides_sans_longest.slice!(sides_sans_longest.index(longest_side))
+
+  if longest_side >= sides_sans_longest.inject(:+) || a<=0 || b<=0 || c<=0
+    raise TriangleError.new()
+  end
+
+  if a === b || a === c || b === c
+    return a === b && b === c ? :equilateral : :isosceles
+  end
+  return :scalene
 end
 
 # Error class used in part 2.  No need to change this code.
